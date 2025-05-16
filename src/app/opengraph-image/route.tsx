@@ -1,9 +1,14 @@
 // src/app/opengraph-image/route.tsx
 import { ImageResponse } from 'next/og'
+import { Inter } from 'next/font/google'
+
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['500', '700'],
+})
 
 export const runtime = 'edge'
 
-// Define colors based on your CSS styles
 const colors = {
   primary: '#8700FF',
   secondary: '#5c07a0',
@@ -25,10 +30,9 @@ export async function GET() {
           alignItems: 'center',
           justifyContent: 'center',
           color: colors.foreground,
-          fontFamily: 'Inter, sans-serif',
+          fontFamily: inter.style.fontFamily,
         }}
       >
-        {/* Logo representation */}
         <div
           style={{
             width: 150,
@@ -36,23 +40,24 @@ export async function GET() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            marginBottom: 20,
-            color: colors.accent,
+            marginBottom: 40,
+            backgroundColor: colors.accent,
+            borderRadius: '50%',
             fontSize: 80,
-            fontWeight: 'bold',
-            transform: 'rotate(5deg)',
+            fontWeight: 700,
+            transform: 'rotate(15deg)',
           }}
         >
           A
         </div>
         <h1
           style={{
-            fontSize: 80,
-            fontWeight: 500,
+            fontSize: 96,
+            fontWeight: 700,
             margin: 0,
             lineHeight: 1.1,
-            color: colors.foreground,
             letterSpacing: '-0.05em',
+            textShadow: `2px 2px 4px ${colors.secondary}`
           }}
         >
           StudioAyyo
@@ -60,10 +65,10 @@ export async function GET() {
         <p
           style={{
             fontSize: 48,
-            margin: '20px 0 0',
+            marginTop: 40,
+            fontWeight: 500,
             color: colors.accent,
-            fontWeight: 300,
-            opacity: 0.9,
+            opacity: 0.95,
           }}
         >
           Coming Soon
@@ -73,21 +78,16 @@ export async function GET() {
     {
       width: 1200,
       height: 630,
-      // Use a font that's similar to Inter
       fonts: [
         {
           name: 'Inter',
-          data: await fetch(
-            new URL('https://rsms.me/inter/font-files/Inter-Regular.woff', import.meta.url)
-          ).then((res) => res.arrayBuffer()),
-          weight: 400,
+          data: await inter.fetchFontBuffer('700'),
+          weight: 700,
           style: 'normal',
         },
         {
           name: 'Inter',
-          data: await fetch(
-            new URL('https://rsms.me/inter/font-files/Inter-Medium.woff', import.meta.url)
-          ).then((res) => res.arrayBuffer()),
+          data: await inter.fetchFontBuffer('500'),
           weight: 500,
           style: 'normal',
         }
