@@ -1,12 +1,9 @@
 // src/app/opengraph-image/route.tsx
 import { ImageResponse } from 'next/og'
 
-// 1. Keep only the allowed exports
 export const runtime = 'edge'
 
-// 2. Remove `export const size` and `export const contentType`
-// 3. Define a GET handler that returns your image, passing width/height inline
-export async function GET(request: Request) {
+export async function GET(_request: Request) {
   return new ImageResponse(
     (
       <div
@@ -38,7 +35,6 @@ export async function GET(request: Request) {
     {
       width: 1200,
       height: 630,
-      // contentType defaults to 'image/png'
     }
   )
 }
