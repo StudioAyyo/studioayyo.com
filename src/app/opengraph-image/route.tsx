@@ -1,9 +1,8 @@
-// src/app/opengraph-image/route.tsx
 import { ImageResponse } from 'next/og'
 
 export const runtime = 'edge'
 
-export async function GET(_request: Request) {
+export async function GET() {
   return new ImageResponse(
     (
       <div
