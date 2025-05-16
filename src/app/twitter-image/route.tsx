@@ -8,28 +8,50 @@ export async function GET() {
     (
       <div
         style={{
-          background: 'linear-gradient(to bottom, #000000, #333333)',
+          backgroundColor: '#8700FF',  // solid primary background
           width: '100%',
           height: '100%',
           display: 'flex',
+          flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          flexDirection: 'column',
-          textAlign: 'center',
-          color: 'white',
+          color: '#FFFFFF',
+          fontFamily: 'Inter, sans-serif',
           padding: '40px',
-          fontFamily: 'sans-serif',
         }}
       >
-        <div style={{ fontSize: 72, marginBottom: 24, fontWeight: 'bold' }}>
+        <h1
+          style={{
+            fontSize: 64,
+            fontWeight: 700,
+            margin: 0,
+            textAlign: 'center',
+          }}
+        >
           StudioAyyo
-        </div>
-        <div style={{ fontSize: 48, opacity: 0.9 }}>
-          Coming Soon
-        </div>
-        <div style={{ fontSize: 32, opacity: 0.7, marginTop: 16 }}>
+        </h1>
+
+        <p
+          style={{
+            fontSize: 40,
+            marginTop: 16,
+            color: '#FFD966',  // accent
+            textAlign: 'center',
+          }}
+        >
           Wait till we cook something fresh!
-        </div>
+        </p>
+
+        {/* subtle accent line */}
+        <div
+          style={{
+            marginTop: 32,
+            width: 200,
+            height: 4,
+            backgroundColor: '#FFD966',
+            borderRadius: 2,
+          }}
+        />
       </div>
     ),
     {
