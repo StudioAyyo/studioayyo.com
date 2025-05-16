@@ -14,10 +14,10 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: 'StudioAyyo – Coming Soon',
   description: 'Wait till we cook something fresh!',
+  metadataBase: new URL('https://studioayyo.com'),
   openGraph: {
     title: 'StudioAyyo – Coming Soon',
     description: 'Wait till we cook something fresh!',
-    metadataBase: new URL('https://studioayyo.com'),
     siteName: 'StudioAyyo',
     images: [
       {
