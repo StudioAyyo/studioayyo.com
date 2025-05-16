@@ -1,19 +1,15 @@
-// app/opengraph-image.tsx
+// src/app/opengraph-image/route.tsx
 import { ImageResponse } from 'next/og';
- 
-// Route segment config
+
+// Tell Next.js this runs on the Edge
 export const runtime = 'edge';
- 
-// Image metadata
-export const size = {
-  width: 1200,
-  height: 630,
-};
- 
+
+// Image metadata (you can also inline these)
+export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
- 
-// Image generation
-export default function Image() {
+
+// **Replace** your default export with a GET handler:
+export async function GET(request: Request) {
   return new ImageResponse(
     (
       <div
@@ -44,6 +40,8 @@ export default function Image() {
     ),
     {
       ...size,
+      headers: { 'Content-Type': contentType }
     }
   );
 }
+
