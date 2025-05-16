@@ -1,26 +1,240 @@
-@import "tailwindcss";
-
+/* Base styles */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --primary: #8700FF;
+  --background: #8700FF;
+  --foreground: #FFFFFF;
+  --secondary: #5c07a0;
+  --accent: #FFD966;
+  --muted: #F5F3FF;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
+body, .app-root {
+  background-color: var(--primary);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+/* Header styles */
+.header {
+  padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  width: 100%;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: white;
+  letter-spacing: -0.05em;
+}
+
+/* Desktop navigation */
+.desktop-nav {
+  display: block;
+}
+
+.desktop-nav ul {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.desktop-nav a {
+  color: white;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.desktop-nav a:hover {
+  opacity: 0.8;
+}
+
+/* Burger menu */
+.burger-menu {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  cursor: pointer;
+  z-index: 20;
+}
+
+.burger-menu span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: white;
+  transition: all 0.3s ease;
+}
+
+/* Mobile navigation */
+.mobile-nav {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 75%;
+  height: 100%;
+  background-color: var(--secondary);
+  padding: 6rem 2rem 2rem;
+  transition: right 0.3s ease;
+  z-index: 10;
+}
+
+.mobile-nav.active {
+  right: 0;
+}
+
+.mobile-nav ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.mobile-nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.5rem;
+  transition: opacity 0.3s ease;
+}
+
+.mobile-nav a:hover {
+  opacity: 0.8;
+}
+
+/* Overlay */
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 5;
+}
+
+/* Main content styles */
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.logo-container {
+  margin-bottom: 2rem;
+  animation: float 6s ease-in-out infinite;
+}
+
+.logo-image {
+  width: 150px;
+  height: auto;
+  transform: rotate(-5deg);
+}
+
+h1 {
+  font-size: 3.5rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  color: white;
+  letter-spacing: -0.05em;
+}
+
+p {
+  font-size: 1.5rem;
+  opacity: 0.9;
+  font-weight: 300;
+  color: white;
+}
+
+/* Animations */
+@keyframes float {
+  0% { transform: translateY(0px) rotate(5deg); }
+  50% { transform: translateY(-20px) rotate(5deg); }
+  100% { transform: translateY(0px) rotate(5deg); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .desktop-nav {
+    display: none;
+  }
+  
+  .burger-menu {
+    display: flex;
+  }
+  
+  .mobile-nav {
+    display: block;
+  }
+  
+  main {
+    align-items: flex-start;
+    text-align: left;
+    justify-content: flex-start;
+    padding-top: 4rem;
+  }
+  
+  .logo-container {
+    align-self: flex-start;
+  }
+  
+  h1 {
+    position: relative;
+    font-size: 3rem;
+    color: white;
+  }
+  
+  h1 span {
+    display: block;
+  }
+  
+  p {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: 1.4;
+    font-size: 1.8rem;
+    opacity: 0.9;
+  }
+  
+  p span {
+    display: block;
+  }
+  
+  /* Burger animation when active */
+  .burger-menu.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+  }
+  
+  .burger-menu.active span:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .burger-menu.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+  }
 }

@@ -1,103 +1,101 @@
+"use client";
 import Image from "next/image";
+import { useState, useEffect } from "react";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  // Close mobile nav on nav link click or overlay click
+  const closeMobileNav = () => {
+    setMobileNavOpen(false);
+    if (typeof window !== "undefined") {
+      document.body.style.overflow = "";
+    }
+  };
+
+  // Open/close mobile nav
+  const toggleMobileNav = () => {
+    setMobileNavOpen((prev) => {
+      if (!prev && typeof window !== "undefined") {
+        document.body.style.overflow = "hidden";
+      } else if (typeof window !== "undefined") {
+        document.body.style.overflow = "";
+      }
+      return !prev;
+    });
+  };
+
+  // Close mobile nav when clicking outside or pressing escape
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && mobileNavOpen) {
+        closeMobileNav();
+      }
+    };
+
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
+  }, [mobileNavOpen]);
+
+  return (
+    <>
+      <header className="header">
+        <div className="logo">StudioAyyo</div>
+        
+        {/* Desktop Navigation */}
+        <nav className="desktop-nav">
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#work">Work</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+        
+        {/* Burger Menu Button */}
+        <div
+          className={`burger-menu${mobileNavOpen ? " active" : ""}`}
+          onClick={toggleMobileNav}
+          aria-label="Open mobile navigation"
+          tabIndex={0}
+          role="button"
+          onKeyDown={e => { if (e.key === "Enter" || e.key === " ") toggleMobileNav(); }}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
         </div>
+        
+        {/* Mobile Navigation */}
+        <div className={`mobile-nav${mobileNavOpen ? " active" : ""}`}>
+          <ul>
+            <li><a href="#about" onClick={closeMobileNav}>About</a></li>
+            <li><a href="#work" onClick={closeMobileNav}>Work</a></li>
+            <li><a href="#contact" onClick={closeMobileNav}>Contact</a></li>
+          </ul>
+        </div>
+      </header>
+      
+      {/* Overlay for mobile nav */}
+      <div
+        className="overlay"
+        style={{ display: mobileNavOpen ? "block" : "none" }}
+        onClick={closeMobileNav}
+      ></div>
+      
+      <main>
+        <div className="logo-container">
+          <Image
+            src="/ayyo-logo.png"
+            alt="StudioAyyo Logo"
+            className="logo-image"
+            width={150}
+            height={150}
+            priority
+          />
+        </div>
+        <h1><span>Website</span> <span>Launching</span> <span>Soon</span></h1>
+        <p><span>Hang tight,</span> <span>we’re cooking up</span> <span>something fresh!</span></p>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+    </>
   );
 }
