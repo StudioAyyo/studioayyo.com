@@ -1,9 +1,7 @@
 // src/app/twitter-image/route.tsx
-import { ImageResponse } from 'next/og';
+import { ImageResponse } from 'next/og'
 
-export const runtime = 'edge';
-export const size = { width: 1200, height: 630 };
-export const contentType = 'image/png';
+export const runtime = 'edge'
 
 export async function GET(request: Request) {
   return new ImageResponse(
@@ -23,21 +21,21 @@ export async function GET(request: Request) {
           fontFamily: 'sans-serif',
         }}
       >
-        <div style={{ fontSize: '72px', marginBottom: '24px', fontWeight: 'bold' }}>
+        <div style={{ fontSize: 72, marginBottom: 24, fontWeight: 'bold' }}>
           StudioAyyo
         </div>
-        <div style={{ fontSize: '48px', opacity: 0.9 }}>
+        <div style={{ fontSize: 48, opacity: 0.9 }}>
           Coming Soon
         </div>
-        <div style={{ fontSize: '32px', opacity: 0.7, marginTop: '16px' }}>
+        <div style={{ fontSize: 32, opacity: 0.7, marginTop: 16 }}>
           Wait till we cook something fresh!
         </div>
       </div>
     ),
     {
-      ...size,
-      headers: { 'Content-Type': contentType }
+      width: 1200,
+      height: 630,
     }
-  );
+  )
 }
 
