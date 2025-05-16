@@ -1,10 +1,11 @@
+// next.config.ts
+import { withCloudflare } from "@cloudflare/next-on-pages";
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
-  output: "export",
-  images: {
-    unoptimized: true,
-  },
+const baseConfig: NextConfig = {
+  images: { unoptimized: true },
+  // any other Next.js config you need…
 };
 
-export default nextConfig;
+export default withCloudflare(baseConfig);
+
