@@ -15,10 +15,10 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL('https://studioayyo.com'),
   openGraph: {
-    images: '/public/open.png',
+    images: '/open.png',
   },
   twitter: {
-    images: '/public/twitter.png',
+    images: '/twitter.png',
   },
 }
 
