@@ -13,16 +13,7 @@ export const size = {
 export const contentType = 'image/png';
  
 // Image generation
-export default async function Image() {
-  // Load Inter font
-  const interRegular = fetch(
-    new URL('https://cdn.jsdelivr.net/npm/@fontsource/inter/files/inter-latin-400-normal.woff', import.meta.url)
-  ).then((res) => res.arrayBuffer());
-  
-  const interBold = fetch(
-    new URL('https://cdn.jsdelivr.net/npm/@fontsource/inter/files/inter-latin-700-normal.woff', import.meta.url)
-  ).then((res) => res.arrayBuffer());
-
+export default function Image() {
   return new ImageResponse(
     (
       <div
@@ -37,7 +28,7 @@ export default async function Image() {
           textAlign: 'center',
           color: 'white',
           padding: '40px',
-          fontFamily: 'Inter',
+          fontFamily: 'sans-serif',
         }}
       >
         <div style={{ fontSize: '72px', marginBottom: '24px', fontWeight: 'bold' }}>
@@ -53,20 +44,6 @@ export default async function Image() {
     ),
     {
       ...size,
-      fonts: [
-        {
-          name: 'Inter',
-          data: await interRegular,
-          style: 'normal',
-          weight: 400,
-        },
-        {
-          name: 'Inter',
-          data: await interBold,
-          style: 'normal',
-          weight: 700,
-        },
-      ],
     }
   );
 }
