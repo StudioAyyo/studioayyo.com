@@ -1,11 +1,5 @@
 // src/app/opengraph-image/route.tsx
 import { ImageResponse } from 'next/og'
-import { Inter } from 'next/font/google'
-
-const inter = Inter({
-  subsets: ['latin'],
-  weight: ['500', '700'],
-})
 
 export const runtime = 'edge'
 
@@ -17,7 +11,22 @@ const colors = {
   muted: '#F5F3FF'
 }
 
+async function loadInterFont() {
+  // Direct URLs from Google Fonts API response
+  const fontData = await Promise.all([
+    fetch('https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7W0Q5nw.woff2').then((res) => res.arrayBuffer()),
+    fetch('https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7W0Q5nw.woff2').then((res) => res.arrayBuffer())
+  ])
+
+  return {
+    interMedium: fontData[0],
+    interBold: fontData[1]
+  }
+}
+
 export async function GET() {
+  const { interMedium, interBold } = await loadInterFont()
+
   return new ImageResponse(
     (
       <div
@@ -30,9 +39,10 @@ export async function GET() {
           alignItems: 'center',
           justifyContent: 'center',
           color: colors.foreground,
-          fontFamily: inter.style.fontFamily,
+          fontFamily: 'Inter',
         }}
       >
+        {/* Logo */}
         <div
           style={{
             width: 150,
@@ -50,27 +60,27 @@ export async function GET() {
         >
           A
         </div>
-        <h1
-          style={{
-            fontSize: 96,
-            fontWeight: 700,
-            margin: 0,
-            lineHeight: 1.1,
-            letterSpacing: '-0.05em',
-            textShadow: `2px 2px 4px ${colors.secondary}`
-          }}
-        >
+        
+        {/* Title */}
+        <h1 style={{
+          fontSize: 96,
+          fontWeight: 700,
+          margin: 0,
+          lineHeight: 1.1,
+          letterSpacing: '-0.05em',
+          textShadow: `2px 2px 4px ${colors.secondary}`
+        }}>
           StudioAyyo
         </h1>
-        <p
-          style={{
-            fontSize: 48,
-            marginTop: 40,
-            fontWeight: 500,
-            color: colors.accent,
-            opacity: 0.95,
-          }}
-        >
+        
+        {/* Subtitle */}
+        <p style={{
+          fontSize: 48,
+          marginTop: 40,
+          fontWeight: 500,
+          color: colors.accent,
+          opacity: 0.95,
+        }}>
           Coming Soon
         </p>
       </div>
@@ -81,13 +91,13 @@ export async function GET() {
       fonts: [
         {
           name: 'Inter',
-          data: await inter.fetchFontBuffer('700'),
+          data: interBold,
           weight: 700,
           style: 'normal',
         },
         {
           name: 'Inter',
-          data: await inter.fetchFontBuffer('500'),
+          data: interMedium,
           weight: 500,
           style: 'normal',
         }

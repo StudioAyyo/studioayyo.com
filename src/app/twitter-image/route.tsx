@@ -1,11 +1,5 @@
 // src/app/twitter-image/route.tsx
 import { ImageResponse } from 'next/og'
-import { Inter } from 'next/font/google'
-
-const inter = Inter({
-  subsets: ['latin'],
-  weight: ['500', '700'],
-})
 
 export const runtime = 'edge'
 
@@ -17,7 +11,19 @@ const colors = {
   muted: '#F5F3FF'
 }
 
+async function loadInterFont() {
+  // Direct URLs from Google Fonts
+  const [mediumFont, boldFont] = await Promise.all([
+    fetch('https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa25L7W0Q5nw.woff2').then((res) => res.arrayBuffer()),
+    fetch('https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7W0Q5nw.woff2').then((res) => res.arrayBuffer())
+  ])
+
+  return { mediumFont, boldFont }
+}
+
 export async function GET() {
+  const { mediumFont, boldFont } = await loadInterFont()
+
   return new ImageResponse(
     (
       <div
@@ -30,9 +36,10 @@ export async function GET() {
           alignItems: 'center',
           justifyContent: 'center',
           color: colors.foreground,
-          fontFamily: inter.style.fontFamily,
+          fontFamily: 'Inter',
         }}
       >
+        {/* Logo - Smaller for Twitter */}
         <div
           style={{
             width: 120,
@@ -50,44 +57,44 @@ export async function GET() {
         >
           A
         </div>
-        <h1
-          style={{
-            fontSize: 72,
-            fontWeight: 700,
-            margin: 0,
-            lineHeight: 1.1,
-            letterSpacing: '-0.05em',
-            textShadow: `2px 2px 4px ${colors.secondary}`
-          }}
-        >
+        
+        {/* Title - Adjusted Size */}
+        <h1 style={{
+          fontSize: 72,
+          fontWeight: 700,
+          margin: 0,
+          lineHeight: 1.1,
+          letterSpacing: '-0.05em',
+          textShadow: `2px 2px 4px ${colors.secondary}`
+        }}>
           StudioAyyo
         </h1>
-        <p
-          style={{
-            fontSize: 36,
-            marginTop: 32,
-            fontWeight: 500,
-            color: colors.accent,
-            opacity: 0.95,
-          }}
-        >
+        
+        {/* Subtitle - Smaller */}
+        <p style={{
+          fontSize: 36,
+          marginTop: 32,
+          fontWeight: 500,
+          color: colors.accent,
+          opacity: 0.95,
+        }}>
           Coming Soon
         </p>
       </div>
     ),
     {
       width: 1200,
-      height: 600,
+      height: 600, // Twitter-specific aspect ratio
       fonts: [
         {
           name: 'Inter',
-          data: await inter.fetchFontBuffer('700'),
+          data: boldFont,
           weight: 700,
           style: 'normal',
         },
         {
           name: 'Inter',
-          data: await inter.fetchFontBuffer('500'),
+          data: mediumFont,
           weight: 500,
           style: 'normal',
         }
