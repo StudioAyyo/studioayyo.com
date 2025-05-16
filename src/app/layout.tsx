@@ -4,7 +4,6 @@ import { Inter } from 'next/font/google'
 import type { ReactNode } from 'react'
 import type { Metadata } from 'next'
 
-export const metadataBase = new URL('https://studioayyo.com')
 
 const inter = Inter({
   subsets: ['latin'],
@@ -18,7 +17,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'StudioAyyo – Coming Soon',
     description: 'Wait till we cook something fresh!',
-    url: 'https://studioayyo.com',
+    metadataBase: new URL('https://studioayyo.com'),
     siteName: 'StudioAyyo',
     images: [
       {
