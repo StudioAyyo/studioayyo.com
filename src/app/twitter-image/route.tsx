@@ -8,24 +8,33 @@ export async function GET() {
     (
       <div
         style={{
-          backgroundColor: '#8700FF',  // solid primary background
+          background: 'linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%)',
           width: '100%',
           height: '100%',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          color: '#FFFFFF',
+          color: 'var(--foreground)',
           fontFamily: 'Inter, sans-serif',
-          padding: '40px',
         }}
       >
+        <img
+          src="/public/ayyo-logo.png"
+          alt="StudioAyyo Logo"
+          style={{
+            width: 150,
+            height: 'auto',
+            marginBottom: 20,
+          }}
+        />
         <h1
           style={{
-            fontSize: 64,
+            fontSize: 80,
             fontWeight: 700,
             margin: 0,
-            textAlign: 'center',
+            lineHeight: 1.1,
+            color: 'var(--foreground)',
           }}
         >
           StudioAyyo
@@ -33,25 +42,14 @@ export async function GET() {
 
         <p
           style={{
-            fontSize: 40,
-            marginTop: 16,
-            color: '#FFD966',  // accent
-            textAlign: 'center',
+            fontSize: 48,
+            margin: '20px 0 0',
+            color: 'var(--accent)',
+            fontWeight: 500,
           }}
         >
-          Wait till we cook something fresh!
+          Coming Soon
         </p>
-
-        {/* subtle accent line */}
-        <div
-          style={{
-            marginTop: 32,
-            width: 200,
-            height: 4,
-            backgroundColor: '#FFD966',
-            borderRadius: 2,
-          }}
-        />
       </div>
     ),
     {
@@ -60,4 +58,3 @@ export async function GET() {
     }
   )
 }
-
