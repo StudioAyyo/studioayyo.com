@@ -35,7 +35,7 @@ body, .app-root {
 }
 
 .logo {
-  font-size: 1.3rem;
+  font-size: 3.5rem;
   font-weight: 400;
   color: white;
   letter-spacing: -0.05em;
@@ -156,7 +156,7 @@ main {
 }
 
 h1 {
-  font-size: 2.5rem;
+  font-size: 3.0rem;
   font-weight: 500;
   margin-bottom: 1rem;
   color: white;
@@ -164,7 +164,7 @@ h1 {
 }
 
 p {
-  font-size: 1.0rem;
+  font-size: 1.5rem;
   opacity: 0.9;
   font-weight: 300;
   color: white;
@@ -204,7 +204,7 @@ p {
   
   h1 {
     position: relative;
-    font-size: 2.0rem;
+    font-size: 2.5rem;
     color: white;
   }
   
@@ -217,7 +217,7 @@ p {
     flex-direction: column;
     align-items: flex-start;
     line-height: 1.4;
-    font-size: 0.8rem;
+    font-size: 1.0rem;
     opacity: 0.9;
   }
   
