@@ -1,21 +1,22 @@
 /* Base styles */
 :root {
-  --primary: #8700FF;
-  --background: #8700FF;
-  --foreground: #FFFFFF;
-  --secondary: #5c07a0;
-  --accent: #FFD966;
-  --muted: #F5F3FF;
+  --primary: #000000;
+  --background: #000000;
+  --foreground: #ffffff;
+  --secondary: #333333;
+  --accent: #ffd966;
+  --muted: #f5f3ff;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
-body, .app-root {
+body,
+.app-root {
   background-color: var(--primary);
   color: var(--foreground);
   min-height: 100vh;
@@ -35,8 +36,9 @@ body, .app-root {
 }
 
 .logo {
-  font-size: 2.0rem;
-  font-weight: 400;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 1.8rem;
+  font-weight: bold;
   color: white;
   letter-spacing: -0.05em;
 }
@@ -69,8 +71,8 @@ body, .app-root {
   display: none;
   flex-direction: column;
   justify-content: space-between;
-  width: 25px;
-  height: 16px;
+  width: 30px;
+  height: 21px;
   cursor: pointer;
   z-index: 20;
 }
@@ -156,8 +158,9 @@ main {
 }
 
 h1 {
-  font-size: 3.0rem;
-  font-weight: 500;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 3.5rem;
+  font-weight: bold;
   margin-bottom: 1rem;
   color: white;
   letter-spacing: -0.05em;
@@ -172,9 +175,15 @@ p {
 
 /* Animations */
 @keyframes float {
-  0% { transform: translateY(0px) rotate(5deg); }
-  50% { transform: translateY(-20px) rotate(5deg); }
-  100% { transform: translateY(0px) rotate(5deg); }
+  0% {
+    transform: translateY(0px) rotate(5deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(5deg);
+  }
 }
 
 /* Responsive adjustments */
@@ -182,58 +191,58 @@ p {
   .desktop-nav {
     display: none;
   }
-  
+
   .burger-menu {
     display: flex;
   }
-  
+
   .mobile-nav {
     display: block;
   }
-  
+
   main {
     align-items: flex-start;
     text-align: left;
     justify-content: flex-start;
     padding-top: 4rem;
   }
-  
+
   .logo-container {
     align-self: flex-start;
   }
-  
+
   h1 {
     position: relative;
-    font-size: 2.5rem;
+    font-size: 3rem;
     color: white;
   }
-  
+
   h1 span {
     display: block;
   }
-  
+
   p {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     line-height: 1.4;
-    font-size: 1.0rem;
+    font-size: 1.8rem;
     opacity: 0.9;
   }
-  
+
   p span {
     display: block;
   }
-  
+
   /* Burger animation when active */
   .burger-menu.active span:nth-child(1) {
     transform: translateY(9px) rotate(45deg);
   }
-  
+
   .burger-menu.active span:nth-child(2) {
     opacity: 0;
   }
-  
+
   .burger-menu.active span:nth-child(3) {
     transform: translateY(-9px) rotate(-45deg);
   }
